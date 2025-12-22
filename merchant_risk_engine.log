@@ -1,0 +1,10 @@
+2025-12-23 00:11:33,775 - app.main - INFO - Starting Merchant Risk & AML Scoring Engine v1.0.0
+2025-12-23 00:11:33,868 - app.database - INFO - Database initialized successfully
+2025-12-23 00:11:33,889 - app.services.risk_engine - INFO - Initialized config: risk_weights
+2025-12-23 00:11:33,891 - app.services.risk_engine - INFO - Initialized config: risk_thresholds
+2025-12-23 00:11:33,892 - app.services.risk_engine - INFO - Initialized config: high_risk_countries
+2025-12-23 00:11:33,893 - app.services.risk_engine - INFO - Initialized config: high_risk_industries
+2025-12-23 00:11:33,893 - app.services.risk_engine - INFO - Initialized config: blacklisted_mccs
+2025-12-23 00:11:33,910 - app.main - INFO - Database initialized
+2025-12-23 00:11:33,910 - app.main - INFO - Admin API Key: xPp92nWPwGWa2cFIr_KU9t2_s6Q6ZIE6DfqZEIC9unY
+2025-12-23 00:17:42,396 - app.main - INFO - Shutting down application
