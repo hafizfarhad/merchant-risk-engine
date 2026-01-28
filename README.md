@@ -31,7 +31,7 @@ A comprehensive **Anti-Money Laundering (AML) Risk Scoring Engine** built with F
 ## 📊 Risk Scoring Algorithm
 
 ### Risk Factors & Weights
-cheezen miss kar rha
+
 The engine evaluates merchants based on 12 configurable risk factors:
 
 | Risk Factor | Default Weight | Description |
