@@ -72,6 +72,12 @@ async def create_merchant(
     merchant.risk_reasons = reasons
     merchant.last_assessment_date = datetime.utcnow()
     
+    # Auto-approve LOW risk, send others for manual review
+    if risk_level == "LOW":
+        merchant.status = MerchantStatus.ACTIVE.value  # Auto-approved
+    else:
+        merchant.status = MerchantStatus.UNDER_REVIEW.value  # Manual review required
+    
     # Record assessment for audit
     RiskEngineService.record_assessment(
         db, merchant, risk_score, risk_level, reasons, applied_rules
@@ -181,6 +187,12 @@ async def update_merchant(
     merchant.last_assessment_date = datetime.utcnow()
     merchant.updated_at = datetime.utcnow()
     
+    # Auto-approve LOW risk, send others for manual review
+    if risk_level == "LOW":
+        merchant.status = MerchantStatus.ACTIVE.value  # Auto-approved
+    else:
+        merchant.status = MerchantStatus.UNDER_REVIEW.value  # Manual review required
+    
     # Record assessment
     RiskEngineService.record_assessment(
         db, merchant, risk_score, risk_level, reasons, applied_rules
@@ -237,6 +249,88 @@ async def delete_merchant(
     db.commit()
     
     return {"message": f"Merchant {merchant_id} deleted successfully"}
+
+
+@router.post("/merchants/{merchant_id}/approve", tags=["Merchants"])
+async def approve_merchant(
+    merchant_id: str,
+    request: Request,
+    db: Session = Depends(get_db),
+    api_key: str = Depends(verify_api_key)
+):
+    """
+    Manually approve a merchant (admin only).
+    Sets status to ACTIVE.
+    """
+    merchant = db.query(Merchant).filter(
+        Merchant.merchant_id == merchant_id
+    ).first()
+    
+    if not merchant:
+        raise HTTPException(status_code=404, detail="Merchant not found")
+    
+    previous_status = merchant.status
+    merchant.status = MerchantStatus.ACTIVE.value
+    merchant.updated_at = datetime.utcnow()
+    
+    # Log approval
+    client_ip = get_client_ip(request)
+    AuditService.log_action(
+        db,
+        action_type="MERCHANT_APPROVED",
+        action_description=f"Merchant {merchant_id} manually approved",
+        merchant_id=merchant_id,
+        previous_value={"status": previous_status},
+        new_value={"status": merchant.status},
+        ip_address=client_ip
+    )
+    
+    db.commit()
+    db.refresh(merchant)
+    
+    logger.info(f"Merchant {merchant_id} approved manually")
+    return {"message": f"Merchant {merchant_id} approved successfully", "status": merchant.status}
+
+
+@router.post("/merchants/{merchant_id}/reject", tags=["Merchants"])
+async def reject_merchant(
+    merchant_id: str,
+    request: Request,
+    db: Session = Depends(get_db),
+    api_key: str = Depends(verify_api_key)
+):
+    """
+    Manually reject a merchant (admin only).
+    Sets status to TERMINATED.
+    """
+    merchant = db.query(Merchant).filter(
+        Merchant.merchant_id == merchant_id
+    ).first()
+    
+    if not merchant:
+        raise HTTPException(status_code=404, detail="Merchant not found")
+    
+    previous_status = merchant.status
+    merchant.status = MerchantStatus.TERMINATED.value
+    merchant.updated_at = datetime.utcnow()
+    
+    # Log rejection
+    client_ip = get_client_ip(request)
+    AuditService.log_action(
+        db,
+        action_type="MERCHANT_REJECTED",
+        action_description=f"Merchant {merchant_id} manually rejected",
+        merchant_id=merchant_id,
+        previous_value={"status": previous_status},
+        new_value={"status": merchant.status},
+        ip_address=client_ip
+    )
+    
+    db.commit()
+    db.refresh(merchant)
+    
+    logger.info(f"Merchant {merchant_id} rejected manually")
+    return {"message": f"Merchant {merchant_id} rejected successfully", "status": merchant.status}
 
 
 # === Risk Assessment Endpoints ===

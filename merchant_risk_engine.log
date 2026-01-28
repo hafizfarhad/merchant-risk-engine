@@ -8,3 +8,95 @@
 2025-12-23 00:11:33,910 - app.main - INFO - Database initialized
 2025-12-23 00:11:33,910 - app.main - INFO - Admin API Key: xPp92nWPwGWa2cFIr_KU9t2_s6Q6ZIE6DfqZEIC9unY
 2025-12-23 00:17:42,396 - app.main - INFO - Shutting down application
+2026-01-28 12:18:24,911 - app.main - INFO - Starting Merchant Risk & AML Scoring Engine v1.0.0
+2026-01-28 12:18:24,920 - app.database - INFO - Database initialized successfully
+2026-01-28 12:18:24,963 - app.main - INFO - Database initialized
+2026-01-28 12:18:24,964 - app.main - INFO - Admin API Key: FUIvxtduLLOJEj6dytpIEHx-osrjdryPhlBNl_S9GMY
+2026-01-28 12:19:40,076 - app.services.risk_engine - WARNING - Alert created for merchant m001: HIGH_RISK_DETECTED
+2026-01-28 12:19:40,176 - app.services.audit_service - INFO - Audit log created: MERCHANT_CREATE - Merchant m001 created/onboarded
+2026-01-28 12:19:40,227 - app.routes.api - INFO - Merchant m001 onboarded with risk level: HIGH
+2026-01-28 12:21:44,480 - app.services.risk_engine - WARNING - Alert created for merchant m002: HIGH_RISK_DETECTED
+2026-01-28 12:21:44,501 - app.services.audit_service - INFO - Audit log created: MERCHANT_CREATE - Merchant m002 created/onboarded
+2026-01-28 12:21:44,529 - app.routes.api - INFO - Merchant m002 onboarded with risk level: HIGH
+2026-01-28 12:27:40,270 - app.main - INFO - Shutting down application
+2026-01-28 12:30:41,537 - app.main - INFO - Starting Merchant Risk & AML Scoring Engine v1.0.0
+2026-01-28 12:30:41,540 - app.database - INFO - Database initialized successfully
+2026-01-28 12:30:41,580 - app.main - INFO - Database initialized
+2026-01-28 12:30:41,581 - app.main - INFO - Admin API Key: 9IJvekKhJZN6O5gqy_-bcz_OxXmvDfvwg42MbZ78DRA
+2026-01-28 12:31:48,260 - app.main - INFO - Shutting down application
+2026-01-28 12:33:41,199 - app.main - INFO - Starting Merchant Risk & AML Scoring Engine v1.0.0
+2026-01-28 12:33:41,202 - app.database - INFO - Database initialized successfully
+2026-01-28 12:33:41,241 - app.main - INFO - Database initialized
+2026-01-28 12:33:41,241 - app.main - INFO - Admin API Key: XSmgLCqTKYQW7vu3SLfLly4jPl5FBRQGFgJuzrzfpHc
+2026-01-28 12:33:42,472 - app.services.risk_engine - WARNING - Alert created for merchant m003: HIGH_RISK_DETECTED
+2026-01-28 12:33:42,529 - app.services.audit_service - INFO - Audit log created: MERCHANT_CREATE - Merchant m003 created/onboarded
+2026-01-28 12:33:42,554 - app.routes.api - INFO - Merchant m003 onboarded with risk level: HIGH
+2026-01-28 12:46:45,251 - app.main - INFO - Shutting down application
+2026-01-28 12:47:28,993 - app.main - INFO - Starting Merchant Risk & AML Scoring Engine v1.0.0
+2026-01-28 12:47:28,997 - app.database - INFO - Database initialized successfully
+2026-01-28 12:47:29,027 - app.main - INFO - Database initialized
+2026-01-28 12:47:29,027 - app.main - INFO - Admin API Key: lqNzdK1Ckkq4E9Qi_ns-MGFneDUgt_iKBATpYaul--k
+2026-01-28 12:47:34,676 - app.services.audit_service - INFO - Audit log created: MERCHANT_CREATE - Merchant LOW001 created/onboarded
+2026-01-28 12:47:34,685 - app.routes.api - INFO - Merchant LOW001 onboarded with risk level: LOW
+2026-01-28 12:47:42,970 - app.services.audit_service - INFO - Audit log created: MERCHANT_CREATE - Merchant LOW002 created/onboarded
+2026-01-28 12:47:42,986 - app.routes.api - INFO - Merchant LOW002 onboarded with risk level: LOW
+2026-01-28 12:51:18,804 - app.main - INFO - Shutting down application
+2026-01-28 12:51:20,878 - app.main - INFO - Starting Merchant Risk & AML Scoring Engine v1.0.0
+2026-01-28 12:51:20,881 - app.database - INFO - Database initialized successfully
+2026-01-28 12:51:20,925 - app.main - INFO - Database initialized
+2026-01-28 12:51:20,925 - app.main - INFO - Admin API Key: H7JNCmOKvJx71xeDrZASBXt2Rgj9Nt_Zo02x3jyHY94
+2026-01-28 12:51:33,093 - app.main - INFO - Shutting down application
+2026-01-28 12:51:35,207 - app.main - INFO - Starting Merchant Risk & AML Scoring Engine v1.0.0
+2026-01-28 12:51:35,210 - app.database - INFO - Database initialized successfully
+2026-01-28 12:51:35,245 - app.main - INFO - Database initialized
+2026-01-28 12:51:35,246 - app.main - INFO - Admin API Key: LnTMdPxYODY_qBzFrwlG5ZDcO1rw1bzl08CiTp44cxE
+2026-01-28 12:52:19,400 - app.main - INFO - Shutting down application
+2026-01-28 12:52:25,932 - app.main - INFO - Starting Merchant Risk & AML Scoring Engine v1.0.0
+2026-01-28 12:52:25,934 - app.database - INFO - Database initialized successfully
+2026-01-28 12:52:25,968 - app.main - INFO - Database initialized
+2026-01-28 12:52:25,968 - app.main - INFO - Admin API Key: 8Bjax2m9rpuOZw6rqty4jXKWB84LwXYEqAJK215RSls
+2026-01-28 12:52:40,554 - app.main - INFO - Shutting down application
+2026-01-28 12:53:20,626 - app.main - INFO - Starting Merchant Risk & AML Scoring Engine v1.0.0
+2026-01-28 12:53:20,629 - app.database - INFO - Database initialized successfully
+2026-01-28 12:53:20,660 - app.main - INFO - Database initialized
+2026-01-28 12:53:20,661 - app.main - INFO - Admin API Key: JIapDa65NkRRiiREcpOosPDlPw-OodygJQfNa_WQPU4
+2026-01-28 12:53:22,404 - app.services.audit_service - INFO - Audit log created: MERCHANT_CREATE - Merchant AUTO_LOW created/onboarded
+2026-01-28 12:53:22,437 - app.routes.api - INFO - Merchant AUTO_LOW onboarded with risk level: LOW
+2026-01-28 12:55:01,585 - app.main - INFO - Shutting down application
+2026-01-28 12:56:37,209 - app.main - INFO - Starting Merchant Risk & AML Scoring Engine v1.0.0
+2026-01-28 12:56:37,213 - app.database - INFO - Database initialized successfully
+2026-01-28 12:56:37,261 - app.main - INFO - Database initialized
+2026-01-28 12:56:37,261 - app.main - INFO - Admin API Key: nKI7xyZHeYfFWWocW9w-999bgy0Fwm8RYkaQPy47CbE
+2026-01-28 12:58:25,728 - app.services.audit_service - INFO - Audit log created: MERCHANT_CREATE - Merchant m006 created/onboarded
+2026-01-28 12:58:25,761 - app.routes.api - INFO - Merchant m006 onboarded with risk level: LOW
+2026-01-28 13:01:33,626 - app.main - INFO - Shutting down application
+2026-01-28 13:01:35,770 - app.main - INFO - Starting Merchant Risk & AML Scoring Engine v1.0.0
+2026-01-28 13:01:35,773 - app.database - INFO - Database initialized successfully
+2026-01-28 13:01:35,809 - app.main - INFO - Database initialized
+2026-01-28 13:01:35,809 - app.main - INFO - Admin API Key: tJKV12JNVuNp6yhMgaVtb2QmYF_KwfXr_Asf9W9nbcc
+2026-01-28 13:03:21,102 - app.main - INFO - Shutting down application
+2026-01-28 13:03:23,212 - app.main - INFO - Starting Merchant Risk & AML Scoring Engine v1.0.0
+2026-01-28 13:03:23,218 - app.database - INFO - Database initialized successfully
+2026-01-28 13:03:23,268 - app.main - INFO - Database initialized
+2026-01-28 13:03:23,268 - app.main - INFO - Admin API Key: ZPOnZrdxaPIOzSprWhGLHphhOquLCeUKcdBsCOvzTlE
+2026-01-28 13:03:37,265 - app.main - INFO - Shutting down application
+2026-01-28 13:03:39,150 - app.main - INFO - Starting Merchant Risk & AML Scoring Engine v1.0.0
+2026-01-28 13:03:39,155 - app.database - INFO - Database initialized successfully
+2026-01-28 13:03:39,208 - app.main - INFO - Database initialized
+2026-01-28 13:03:39,208 - app.main - INFO - Admin API Key: 9JzZ-K6HLP8KeUgRJUhWZqDG03FjzSM3_GIWWHtQ00c
+2026-01-28 13:03:52,094 - app.main - INFO - Shutting down application
+2026-01-28 13:03:53,933 - app.main - INFO - Starting Merchant Risk & AML Scoring Engine v1.0.0
+2026-01-28 13:03:53,937 - app.database - INFO - Database initialized successfully
+2026-01-28 13:03:53,975 - app.main - INFO - Database initialized
+2026-01-28 13:03:53,975 - app.main - INFO - Admin API Key: syuMRut-iTHVjqediOabQ8f5vrXp2scEGfUdn7mSaTw
+2026-01-28 13:06:20,008 - app.services.audit_service - INFO - Audit log created: MERCHANT_APPROVED - Merchant LOW002 manually approved
+2026-01-28 13:06:20,065 - app.routes.api - INFO - Merchant LOW002 approved manually
+2026-01-28 13:06:42,887 - app.services.audit_service - INFO - Audit log created: MERCHANT_APPROVED - Merchant LOW001 manually approved
+2026-01-28 13:06:42,940 - app.routes.api - INFO - Merchant LOW001 approved manually
+2026-01-28 13:06:51,676 - app.services.audit_service - INFO - Audit log created: MERCHANT_APPROVED - Merchant m003 manually approved
+2026-01-28 13:06:51,697 - app.routes.api - INFO - Merchant m003 approved manually
+2026-01-28 13:07:00,588 - app.services.audit_service - INFO - Audit log created: MERCHANT_REJECTED - Merchant m001 manually rejected
+2026-01-28 13:07:00,609 - app.routes.api - INFO - Merchant m001 rejected manually
+2026-01-28 13:08:08,086 - app.services.audit_service - INFO - Audit log created: MERCHANT_APPROVED - Merchant m002 manually approved
+2026-01-28 13:08:08,115 - app.routes.api - INFO - Merchant m002 approved manually
+2026-01-28 13:15:18,970 - app.main - INFO - Shutting down application

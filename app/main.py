@@ -325,11 +325,12 @@ async def root():
                                     <th>Industry</th>
                                     <th>Risk Score</th>
                                     <th>Risk Level</th>
+                                    <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody id="merchants-table">
-                                <tr><td colspan="7" class="text-center text-muted">Loading...</td></tr>
+                                <tr><td colspan="8" class="text-center text-muted">Loading...</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -621,11 +622,24 @@ async def root():
                     
                     const tbody = document.getElementById('merchants-table');
                     if (merchants.length === 0) {
-                        tbody.innerHTML = '<tr><td colspan="7" class="text-center text-muted">No merchants found</td></tr>';
+                        tbody.innerHTML = '<tr><td colspan="8" class="text-center text-muted">No merchants found</td></tr>';
                         return;
                     }
                     
-                    tbody.innerHTML = merchants.map(m => `
+                    const getStatusBadge = (status) => {
+                        const statusColors = {
+                            'ACTIVE': 'bg-success',
+                            'PENDING': 'bg-secondary',
+                            'UNDER_REVIEW': 'bg-warning text-dark',
+                            'SUSPENDED': 'bg-danger',
+                            'TERMINATED': 'bg-dark'
+                        };
+                        return `<span class="badge ${statusColors[status] || 'bg-secondary'}">${status}</span>`;
+                    };
+                    
+                    tbody.innerHTML = merchants.map(m => {
+                        const showApproveReject = m.status === 'PENDING' || m.status === 'UNDER_REVIEW';
+                        return `
                         <tr>
                             <td><strong>${m.merchant_id}</strong></td>
                             <td>${m.business_name}</td>
@@ -633,13 +647,22 @@ async def root():
                             <td>${m.industry}</td>
                             <td><span class="badge bg-secondary">${m.risk_score}</span></td>
                             <td><span class="risk-badge risk-${m.risk_level.toLowerCase()}">${m.risk_level}</span></td>
+                            <td>${getStatusBadge(m.status)}</td>
                             <td>
-                                <button class="btn btn-sm btn-outline-primary" onclick="viewMerchant('${m.merchant_id}')">
+                                <button class="btn btn-sm btn-outline-primary me-1" onclick="viewMerchant('${m.merchant_id}')" title="View Details">
                                     <i class="bi bi-eye"></i>
                                 </button>
+                                ${showApproveReject ? `
+                                <button class="btn btn-sm btn-success me-1" onclick="approveMerchant('${m.merchant_id}')" title="Approve">
+                                    <i class="bi bi-check-lg"></i>
+                                </button>
+                                <button class="btn btn-sm btn-danger" onclick="rejectMerchant('${m.merchant_id}')" title="Reject">
+                                    <i class="bi bi-x-lg"></i>
+                                </button>
+                                ` : ''}
                             </td>
                         </tr>
-                    `).join('');
+                    `}).join('');
                 } catch (e) {
                     console.error('Error loading merchants:', e);
                 }
@@ -654,6 +677,58 @@ async def root():
                     alert(`Merchant: ${id}\\nRisk Score: ${data.risk_score}\\nLevel: ${data.risk_level}\\n\\nReasons:\\n${data.risk_reasons.join('\\n')}`);
                 } catch (e) {
                     console.error('Error:', e);
+                }
+            }
+
+            // Approve merchant
+            async function approveMerchant(id) {
+                const apiKey = document.getElementById('admin-api-key')?.value || prompt('Enter Admin API Key:');
+                if (!apiKey) return;
+                
+                if (!confirm(`Are you sure you want to APPROVE merchant ${id}?`)) return;
+                
+                try {
+                    const res = await fetch(API_BASE + '/merchants/' + id + '/approve', {
+                        method: 'POST',
+                        headers: { 'X-API-Key': apiKey }
+                    });
+                    
+                    if (res.ok) {
+                        alert('Merchant approved successfully!');
+                        loadMerchants();
+                        loadDashboard();
+                    } else {
+                        const err = await res.json();
+                        alert('Error: ' + (err.detail || 'Failed to approve'));
+                    }
+                } catch (e) {
+                    alert('Error: ' + e.message);
+                }
+            }
+
+            // Reject merchant
+            async function rejectMerchant(id) {
+                const apiKey = document.getElementById('admin-api-key')?.value || prompt('Enter Admin API Key:');
+                if (!apiKey) return;
+                
+                if (!confirm(`Are you sure you want to REJECT merchant ${id}? This will TERMINATE the merchant.`)) return;
+                
+                try {
+                    const res = await fetch(API_BASE + '/merchants/' + id + '/reject', {
+                        method: 'POST',
+                        headers: { 'X-API-Key': apiKey }
+                    });
+                    
+                    if (res.ok) {
+                        alert('Merchant rejected successfully!');
+                        loadMerchants();
+                        loadDashboard();
+                    } else {
+                        const err = await res.json();
+                        alert('Error: ' + (err.detail || 'Failed to reject'));
+                    }
+                } catch (e) {
+                    alert('Error: ' + e.message);
                 }
             }
 
